@@ -1,0 +1,114 @@
+<!--index.wxml-->
+<!-- 搜索栏 -->
+<view class="top">
+  <view class="ui-searchbar">
+    <view class="ui-searchbar_form">
+      <view class="ui-searchbar_box">
+        <icon class="ui-icon-search_inbox" type="search" size="14"></icon>
+        <input type="text" class="ui-searchbar_input" placeholder="请输入要查找的商品"/>
+      </view>
+    </view>
+    <view class="ui-searchbar_cancelbtn" bindtap='search'>搜索</view>
+  </view>
+  <!-- tab导航栏 -->
+  <scroll-view scroll-x="true" class="nav" scroll-left="{{navScrollLeft}}" scroll-with-animation="{{true}}">
+    <block wx:for="{{navData}}" wx:for-index="idx" wx:for-item="navItem" wx:key="idx">
+      <view class="nav-item {{currentTab == idx ?'active':''}}" data-current="{{idx}}" bindtap="switchNav">
+        <text>{{navItem}}</text>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<!-- 页面内容 -->
+<view class="ui-tabcontent">
+	<!-- 第1个页面 -->
+	<view hidden="{{currentTab != 0}}">
+    <!-- 图片滚动播放 -->
+		<view class="images-container">
+      <swiper indicator-dots="{{indicatordots}}" autoplay="{{autoplay}}" interval="{{interval}}"> 
+        <swiper-item><image class="images" src="/pages/lunbo-images/01.jpg"></image></swiper-item>
+        <swiper-item><image class="images" src="/pages/lunbo-images/02.jpg"></image></swiper-item>
+        <swiper-item><image class="images" src="/pages/lunbo-images/03.jpg"></image></swiper-item>
+      </swiper>
+    </view>
+    <!-- 分类栏 -->
+    <view class="nav1">
+        <swiper> 
+          <swiper-item>
+            <view class="nav1_items"><image src="/pages/index/fenleilan-images/京东超市.png"></image><text>\n京东超市</text></view>
+            <view class="nav1_items"><image src="/pages/index/fenleilan-images/数码电器.png"></image><text>\n数码电器</text></view>
+            <view class="nav1_items"><image src="/pages/index/fenleilan-images/京东服饰.png"></image><text>\n京东服饰</text></view>
+            <view class="nav1_items"><image src="/pages/index/fenleilan-images/京东生鲜.png"></image><text>\n京东生鲜</text></view>
+            <view class="nav1_items"><image src="/pages/index/fenleilan-images/京东到家.png"></image><text>\n京东到家</text></view>
+            <view class="nav1_items"><image src="/pages/index/fenleilan-images/充值缴费.png"></image><text>\n充值缴费</text></view>
+            <view class="nav1_items"><image src="/pages/index/fenleilan-images/9.9.png"></image><text>\n9.9元拼</text></view>
+            <view class="nav1_items"><image src="/pages/index/fenleilan-images/领卷.png"></image><text>\n领卷</text></view>
+            <view class="nav1_items"><image src="/pages/index/fenleilan-images/领金贴.png"></image><text>\n领金贴</text></view>
+            <view class="nav1_items"><image src="/pages/index/fenleilan-images/PLUS会员.png"></image><text>\nPLUS会员</text></view>
+          </swiper-item>
+        </swiper>
+    </view>
+    <!-- 插图 -->
+    <view class="nav0"><image class="pic" src="/image/插图1.png"></image></view>
+    <!-- 秒杀 -->
+    <view class="bargains">
+      <view class="top">
+        <view class="countdown">
+          <text decode>京东秒杀&nbsp;</text>
+          <view class="txt-time">{{txtTime.hou}}</view><text>:</text>
+          <view class="txt-time">{{txtTime.min}}</view><text>:</text>
+          <view class="txt-time">{{txtTime.sec}}</view>
+        </view>
+        <view class="more-bargains">
+          <text decode>9.9限时秒&nbsp;</text><text class="arrow" />
+        </view>
+      </view>
+      <scroll-view class="goods-list" scroll-x="true">
+        <view class="goods-item"><image src="/pages/miaosha-images/秒杀1.jpg"></image><text>\n￥18.8</text></view>
+        <view class="goods-item"><image src="/pages/miaosha-images/秒杀2.jpg"></image><text>\n￥12.9</text></view>
+        <view class="goods-item"><image src="/pages/miaosha-images/秒杀3.jpg"></image><text>\n￥12.9</text></view>
+        <view class="goods-item"><image src="/pages/miaosha-images/秒杀4.jpg"></image><text>\n￥1649</text></view>
+        <view class="goods-item"><image src="/pages/miaosha-images/秒杀5.jpg"></image><text>\n￥45</text></view>
+        <view class="goods-item"><image src="/pages/miaosha-images/秒杀6.jpg"></image><text>\n￥199</text></view>
+      </scroll-view>
+    </view>
+    <!-- 分类栏 -->
+    <view class="nav2">
+      <view class="nav2_items"><text class="font">品牌闪购\n</text><text class="font-purple">汇大牌好价</text><image src="/pages/index/fenleilan-images/品牌闪购.png"></image></view>
+      <view class="nav2_items"><text class="font">排行榜\n</text><text class="font-pink">跟榜购好物</text><image src="/pages/index/fenleilan-images/排行榜.png"></image></view>
+      <view class="nav2_items"><text class="font">每日特价\n</text><text class="font-gold">9块9疯抢</text><image src="/pages/index/fenleilan-images/每日特价.png"></image></view>
+      <view class="nav2_items"><text class="font">新品首发\n</text><text class="font-blue">全网首先购</text><image src="/pages/index/fenleilan-images/新品首发.jpg"></image></view>
+    </view>
+    <view class="nav2">
+      <view class="nav2_items"><text class="font1">京东超市\n</text><image src="/pages/index/fenleilan-images/京东超市.jpg"></image></view>
+      <view class="nav2_items"><text class="font1">居家百货\n</text><image src="/pages/index/fenleilan-images/居家百货.jpg"></image></view>
+      <view class="nav2_items"><text class="font1">京东直播\n</text><image src="/pages/index/fenleilan-images/京东直播.jpg"></image></view>
+      <view class="nav2_items"><text class="font2">主播力荐</text><text class="arrow" /><image src="/pages/index/fenleilan-images/京东直播2.jpg"></image></view>
+    </view>
+    <!-- 插图 -->
+    <view class="nav0"><image class="pic" src="/image/插图2.png"></image></view>
+    <!-- 商品列表 -->
+    <view class="nav3">
+      <view class="nav3_items">
+        <image src="/pages/goods-images/商品1.bmp"></image>
+        <text class="goods-font">AOC品牌台式电脑商用办公设计家用网课学习游戏主机酷睿高清屏幕整机全套</text>
+        <view class="price-box">
+          <view class="top">
+            <text class="price">￥3599</text>
+            <view class="like"><text>看相似</text></view>
+          </view>
+        </view>
+      </view>
+      <view class="nav3_items">
+        <image src="/pages/goods-images/商品2.bmp"></image>
+        <text class="goods-font">凯利科27英寸电竞广色域电脑显示器超薄高清窄边框曲面游戏办公4K144HZ广视角IPS滤蓝光不闪屏</text>
+        <view class="price-box">
+          <view class="top">
+            <text class="price">￥468</text>
+            <view class="like"><text>看相似</text></view>
+          </view>
+        </view>
+      </view>
+    </view>
+	</view>
+</view>
